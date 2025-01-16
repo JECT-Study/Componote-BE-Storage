@@ -36,6 +36,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
+task copyResources(type: Copy) {
+	from file('Componote-BE-Config/storage/resources') // 서브모듈 리소스 경로
+	into file('src/main/resources') // 메인 프로젝트의 리소스 디렉토리로 복사
+}
+processResources.dependsOn(copyResources)
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
